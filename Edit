@@ -1,0 +1,24 @@
+add_action('wp_footer', function(){?>
+    <script>
+    function radio_checked(){
+        jQuery.each(jQuery('div input[type="radio"]:checked'),function(){
+        var label=jQuery(this).siblings('label').text();
+        var help=jQuery(this).parent('div').parent('div');
+        console.log(help.siblings('.wcpa_helptext').length);
+        if(help.siblings('.wcpa_helptext').length==0){
+            help.before(('<span class="wcpa_helptext">'+label+'</span>'));
+        }
+        else{
+            help.siblings('.wcpa_helptext').text(label);
+        }
+    });
+    }
+    jQuery(document).ready(function(){
+        radio_checked();
+    });
+    jQuery('div input[type="radio"]').change(function(){
+        radio_checked();
+    });
+    </script>
+<?php  });
+// Add these lines in functions.php file. 
